@@ -11,8 +11,8 @@ import java.util.List;
 
 public class Main {
 
-    private static final String JSON_FILE = System.getProperty("user.dir") + "\\src\\main\\resources\\data.json";
-    private static final Gson gson = new Gson();
+    private static final String url = System.getProperty("user.dir") + "\\src\\main\\resources\\data.json";
+    private static final Gson json = new Gson();
 
     public static void main(String[] args) {
         // Create some initial data
@@ -55,10 +55,10 @@ public class Main {
     }
 
     private static List<Usuario> readFromJson() {
-        try (FileReader reader = new FileReader(JSON_FILE)) {
+        try (FileReader reader = new FileReader(url)) {
             Type type = new TypeToken<List<Usuario>>() {
             }.getType();
-            return gson.fromJson(reader, type);
+            return json.fromJson(reader, type);
         } catch (IOException e) {
             e.printStackTrace();
             return new ArrayList<>();
@@ -66,8 +66,8 @@ public class Main {
     }
 
     private static void guardarEnELJson(List<Usuario> users) {
-        try (FileWriter writer = new FileWriter(JSON_FILE)) {
-            gson.toJson(users, writer);
+        try (FileWriter writer = new FileWriter(url)) {
+            json.toJson(users, writer);
         } catch (IOException e) {
             e.printStackTrace();
         }
