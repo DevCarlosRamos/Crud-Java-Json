@@ -22,7 +22,7 @@ public class Main {
         users.add(new Usuario(2, "Daniel"));
 
         // Write initial data to JSON file
-        writeToJson(users);
+        guardarEnELJson(users);
 
         // Read data from JSON file
         List<Usuario> loadedUsers = readFromJson();
@@ -65,7 +65,7 @@ public class Main {
         }
     }
 
-    private static void writeToJson(List<Usuario> users) {
+    private static void guardarEnELJson(List<Usuario> users) {
         try (FileWriter writer = new FileWriter(JSON_FILE)) {
             gson.toJson(users, writer);
         } catch (IOException e) {
@@ -81,13 +81,13 @@ public class Main {
                 break;
             }
         }
-        writeToJson(users);
+        guardarEnELJson(users);
     }
 
     private static void deleteUser(Usuario userToDelete) {
         List<Usuario> users = readFromJson();
         users.removeIf(user -> user.getId() == userToDelete.getId());
-        writeToJson(users);
+        guardarEnELJson(users);
     }
 
     static class Usuario {
