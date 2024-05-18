@@ -80,7 +80,7 @@ public class Main {
         List<Usuario> users = LeerJson();
         for (Usuario user : users) {
             if (user.getId() == userToUpdate.getId()) {
-                user.setName(userToUpdate.getName());
+                user.setName(userToUpdate.getNombre());
                 break;
             }
         }
@@ -95,11 +95,11 @@ public class Main {
 
     static class Usuario {
         private int id;
-        private String name;
+        private String nombre;
 
-        public Usuario(int id, String name) {
+        public Usuario(int id, String nombre) {
             this.id = id;
-            this.name = name;
+            this.nombre = nombre;
         }
 
         public int getId() {
@@ -110,19 +110,19 @@ public class Main {
             this.id = id;
         }
 
-        public String getName() {
-            return name;
+        public String getNombre() {
+            return nombre;
         }
 
-        public void setName(String name) {
-            this.name = name;
+        public void setName(String nombre) {
+            this.nombre = nombre;
         }
 
         @Override
         public String toString() {
             return "Usuario{" +
                     "id=" + id +
-                    ", name='" + name + '\'' +
+                    ", Nombre='" + nombre + '\'' +
                     '}';
         }
     }
