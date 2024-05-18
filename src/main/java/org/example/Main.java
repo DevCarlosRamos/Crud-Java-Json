@@ -15,14 +15,17 @@ public class Main {
     private static final Gson json = new Gson();
 
     public static void main(String[] args) {
+
         // Create some initial data
-        List<Usuario> users = new ArrayList<>();
-        users.add(new Usuario(0, "Carlos"));
-        users.add(new Usuario(1, "Luz"));
-        users.add(new Usuario(2, "Daniel"));
+        List<Usuario> ListaDeUsuarios = new ArrayList<>();
+
+        ListaDeUsuarios.add(new Usuario(0, "Carlos"));
+        ListaDeUsuarios.add(new Usuario(1, "Luz"));
+        ListaDeUsuarios.add(new Usuario(2, "Daniel"));
+        ListaDeUsuarios.add(new Usuario(3, "Ramon"));
 
         // Write initial data to JSON file
-        guardarEnELJson(users);
+        guardarEnELJson(ListaDeUsuarios);
 
         // Read data from JSON file
         List<Usuario> loadedUsers = readFromJson();
