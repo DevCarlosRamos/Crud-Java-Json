@@ -11,7 +11,7 @@ import java.util.List;
 
 public class Main {
 
-    private static final String url = System.getProperty("user.dir") + "\\src\\main\\resources\\data.json";
+    private static final String url = "/home/carlos/Escritorio/carpeta/Crud-Java-Json/src/main/resources/data.json";
     private static final Gson json = new Gson();
 
     public static void main(String[] args) {
@@ -28,7 +28,7 @@ public class Main {
         guardarEnELJson(ListaDeUsuarios);
 
         // Read data from JSON file
-        List<Usuario> ListaDeUsuarios2 = readFromJson();
+        List<Usuario> ListaDeUsuarios2 = LeerJson();
         System.out.println("lista de usuarios agregados:");
         for (Usuario user : ListaDeUsuarios2) {
             System.out.println(user);
@@ -40,7 +40,7 @@ public class Main {
         updateUser(userToUpdate);
 
         // Read updated data from JSON file
-        List<Usuario> updatedUsers = readFromJson();
+        List<Usuario> updatedUsers = LeerJson();
         System.out.println("Updated users from JSON:");
         for (Usuario user : updatedUsers) {
             System.out.println(user);
@@ -50,14 +50,14 @@ public class Main {
         deleteUser(updatedUsers.get(0));
 
         // Read final data from JSON file
-        List<Usuario> finalUsers = readFromJson();
+        List<Usuario> finalUsers = LeerJson();
         System.out.println("Final users from JSON:");
         for (Usuario user : finalUsers) {
             System.out.println(user);
         }
     }
 
-    private static List<Usuario> readFromJson() {
+    private static List<Usuario> LeerJson() {
         try (FileReader reader = new FileReader(url)) {
             Type type = new TypeToken<List<Usuario>>() {
             }.getType();
@@ -68,16 +68,16 @@ public class Main {
         }
     }
 
-    private static void guardarEnELJson(List<Usuario> users) {
+    private static void guardarEnELJson(List<Usuario> ListaDeUsuarios) {
         try (FileWriter writer = new FileWriter(url)) {
-            json.toJson(users, writer);
+            json.toJson(ListaDeUsuarios, writer);
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
     private static void updateUser(Usuario userToUpdate) {
-        List<Usuario> users = readFromJson();
+        List<Usuario> users = LeerJson();
         for (Usuario user : users) {
             if (user.getId() == userToUpdate.getId()) {
                 user.setName(userToUpdate.getName());
@@ -88,7 +88,7 @@ public class Main {
     }
 
     private static void deleteUser(Usuario userToDelete) {
-        List<Usuario> users = readFromJson();
+        List<Usuario> users = LeerJson();
         users.removeIf(user -> user.getId() == userToDelete.getId());
         guardarEnELJson(users);
     }
