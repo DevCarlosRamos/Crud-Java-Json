@@ -36,7 +36,7 @@ public class Main {
 
         // Actualizar usuarios
         Usuario usuarioActualizado = ListaDeUsuarios2.get(2);
-        usuarioActualizado.setName("Nandito");
+        usuarioActualizado.setNombre("Nandito");
         actualizarUsuario(usuarioActualizado);
 
         // Read updated data from JSON file
@@ -80,7 +80,7 @@ public class Main {
         List<Usuario> users = LeerJson();
         for (Usuario user : users) {
             if (user.getId() == userToUpdate.getId()) {
-                user.setName(userToUpdate.getNombre());
+                user.setNombre(userToUpdate.getNombre());
                 break;
             }
         }
@@ -114,7 +114,7 @@ public class Main {
             return nombre;
         }
 
-        public void setName(String nombre) {
+        public void setNombre(String nombre) {
             this.nombre = nombre;
         }
 
