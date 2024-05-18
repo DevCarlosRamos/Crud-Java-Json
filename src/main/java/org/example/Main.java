@@ -17,23 +17,23 @@ public class Main {
     public static void main(String[] args) {
         // Create some initial data
         List<User> users = new ArrayList<>();
-        users.add(new User(1, "John"));
-        users.add(new User(2, "Alice"));
-        users.add(new User(3, "Bob"));
+        users.add(new User(0, "Carlos"));
+        users.add(new User(1, "Luz"));
+        users.add(new User(2, "Daniel"));
 
         // Write initial data to JSON file
         writeToJson(users);
 
         // Read data from JSON file
         List<User> loadedUsers = readFromJson();
-        System.out.println("Loaded users from JSON:");
+        System.out.println("lista de usuarios agregados:");
         for (User user : loadedUsers) {
             System.out.println(user);
         }
 
         // Update user
         User userToUpdate = loadedUsers.get(0);
-        userToUpdate.setName("Updated Name");
+        userToUpdate.setName("cualquier cosa");
         updateUser(userToUpdate);
 
         // Read updated data from JSON file
@@ -56,7 +56,8 @@ public class Main {
 
     private static List<User> readFromJson() {
         try (FileReader reader = new FileReader(JSON_FILE)) {
-            Type type = new TypeToken<List<User>>() {}.getType();
+            Type type = new TypeToken<List<User>>() {
+            }.getType();
             return gson.fromJson(reader, type);
         } catch (IOException e) {
             e.printStackTrace();
