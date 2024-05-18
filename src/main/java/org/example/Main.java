@@ -35,9 +35,9 @@ public class Main {
         }
 
         // Actualizar usuarios
-        Usuario userToUpdate = ListaDeUsuarios2.get(0);
-        userToUpdate.setName("cualquier cosa");
-        updateUser(userToUpdate);
+        Usuario usuarioActualizado = ListaDeUsuarios2.get(2);
+        usuarioActualizado.setName("Nandito");
+        actualizarUsuario(usuarioActualizado);
 
         // Read updated data from JSON file
         List<Usuario> updatedUsers = LeerJson();
@@ -76,7 +76,7 @@ public class Main {
         }
     }
 
-    private static void updateUser(Usuario userToUpdate) {
+    private static void actualizarUsuario(Usuario userToUpdate) {
         List<Usuario> users = LeerJson();
         for (Usuario user : users) {
             if (user.getId() == userToUpdate.getId()) {
