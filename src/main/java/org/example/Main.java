@@ -16,30 +16,30 @@ public class Main {
 
     public static void main(String[] args) {
         // Create some initial data
-        List<User> users = new ArrayList<>();
-        users.add(new User(0, "Carlos"));
-        users.add(new User(1, "Luz"));
-        users.add(new User(2, "Daniel"));
+        List<Usuario> users = new ArrayList<>();
+        users.add(new Usuario(0, "Carlos"));
+        users.add(new Usuario(1, "Luz"));
+        users.add(new Usuario(2, "Daniel"));
 
         // Write initial data to JSON file
         writeToJson(users);
 
         // Read data from JSON file
-        List<User> loadedUsers = readFromJson();
+        List<Usuario> loadedUsers = readFromJson();
         System.out.println("lista de usuarios agregados:");
-        for (User user : loadedUsers) {
+        for (Usuario user : loadedUsers) {
             System.out.println(user);
         }
 
         // Update user
-        User userToUpdate = loadedUsers.get(0);
+        Usuario userToUpdate = loadedUsers.get(0);
         userToUpdate.setName("cualquier cosa");
         updateUser(userToUpdate);
 
         // Read updated data from JSON file
-        List<User> updatedUsers = readFromJson();
+        List<Usuario> updatedUsers = readFromJson();
         System.out.println("Updated users from JSON:");
-        for (User user : updatedUsers) {
+        for (Usuario user : updatedUsers) {
             System.out.println(user);
         }
 
@@ -47,16 +47,16 @@ public class Main {
         deleteUser(updatedUsers.get(0));
 
         // Read final data from JSON file
-        List<User> finalUsers = readFromJson();
+        List<Usuario> finalUsers = readFromJson();
         System.out.println("Final users from JSON:");
-        for (User user : finalUsers) {
+        for (Usuario user : finalUsers) {
             System.out.println(user);
         }
     }
 
-    private static List<User> readFromJson() {
+    private static List<Usuario> readFromJson() {
         try (FileReader reader = new FileReader(JSON_FILE)) {
-            Type type = new TypeToken<List<User>>() {
+            Type type = new TypeToken<List<Usuario>>() {
             }.getType();
             return gson.fromJson(reader, type);
         } catch (IOException e) {
@@ -65,7 +65,7 @@ public class Main {
         }
     }
 
-    private static void writeToJson(List<User> users) {
+    private static void writeToJson(List<Usuario> users) {
         try (FileWriter writer = new FileWriter(JSON_FILE)) {
             gson.toJson(users, writer);
         } catch (IOException e) {
@@ -73,9 +73,9 @@ public class Main {
         }
     }
 
-    private static void updateUser(User userToUpdate) {
-        List<User> users = readFromJson();
-        for (User user : users) {
+    private static void updateUser(Usuario userToUpdate) {
+        List<Usuario> users = readFromJson();
+        for (Usuario user : users) {
             if (user.getId() == userToUpdate.getId()) {
                 user.setName(userToUpdate.getName());
                 break;
@@ -84,17 +84,17 @@ public class Main {
         writeToJson(users);
     }
 
-    private static void deleteUser(User userToDelete) {
-        List<User> users = readFromJson();
+    private static void deleteUser(Usuario userToDelete) {
+        List<Usuario> users = readFromJson();
         users.removeIf(user -> user.getId() == userToDelete.getId());
         writeToJson(users);
     }
 
-    static class User {
+    static class Usuario {
         private int id;
         private String name;
 
-        public User(int id, String name) {
+        public Usuario(int id, String name) {
             this.id = id;
             this.name = name;
         }
@@ -117,7 +117,7 @@ public class Main {
 
         @Override
         public String toString() {
-            return "User{" +
+            return "Usuario{" +
                     "id=" + id +
                     ", name='" + name + '\'' +
                     '}';
