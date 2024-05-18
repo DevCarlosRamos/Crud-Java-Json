@@ -28,14 +28,14 @@ public class Main {
         guardarEnELJson(ListaDeUsuarios);
 
         // Read data from JSON file
-        List<Usuario> loadedUsers = readFromJson();
+        List<Usuario> ListaDeUsuarios2 = readFromJson();
         System.out.println("lista de usuarios agregados:");
-        for (Usuario user : loadedUsers) {
+        for (Usuario user : ListaDeUsuarios2) {
             System.out.println(user);
         }
 
-        // Update user
-        Usuario userToUpdate = loadedUsers.get(0);
+        // Actualizar usuarios
+        Usuario userToUpdate = ListaDeUsuarios2.get(0);
         userToUpdate.setName("cualquier cosa");
         updateUser(userToUpdate);
 
